@@ -53,7 +53,12 @@ class ViewController: UIViewController {
             // 判断是否可以删除
             if(NSFileManager.defaultManager().fileExistsAtPath(path)){
                 // 删除
-                try! NSFileManager.defaultManager().removeItemAtPath(path)
+                do {
+                    try NSFileManager.defaultManager().removeItemAtPath(path)
+                } catch let error as NSError {
+                    print(error)
+                }
+                
             }
         }
     }
